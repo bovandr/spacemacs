@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+* settings
+
+ALLOWED_HOSTS = [
+    '*',
+    u'127.0.0.1',
+]
+
+
+ os.path.join(BASE_DIR, 'templates'),
+
+TIME_ZONE = 'Europe/Minsk'
+
+# https://docs.djangoproject.com/en/4.0/ref/settings/#static-root
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+
+# в производстве убрать.
+# alias jshell='python manage.py shell_plus --notebook'
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+* Url
+
+from django.conf.urls.static import static
+from django.conf import settings
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    
+    
+    
